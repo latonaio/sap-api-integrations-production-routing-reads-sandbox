@@ -24,7 +24,6 @@ func NewSAPAPICaller(baseUrl string, l *logger.Logger) *SAPAPICaller {
 	}
 }
 
-		
 func (c *SAPAPICaller) AsyncGetProductionRouting(Product, Plant, ValidityEndDate, ProductionRoutingGroup, ProductionRouting, ProductionRoutingOpIntID string) {
 	wg := &sync.WaitGroup{}
 
@@ -38,7 +37,7 @@ func (c *SAPAPICaller) AsyncGetProductionRouting(Product, Plant, ValidityEndDate
 		wg.Done()
 	}()
 	go func() {
-		c.ProductionRoutingOpIntID(Product, Plant, ProductionRoutingGroup, ProductionRouting, ProductionRoutingOpIntID, ValidityEndDate)
+		c.ProductionRoutingOp(Product, Plant, ProductionRoutingGroup, ProductionRouting, ProductionRoutingOpIntID, ValidityEndDate)
 		wg.Done()
 	}()
 	wg.Wait()
@@ -66,8 +65,8 @@ func (c *SAPAPICaller) ProductionRouting(Product, Plant, ProductionRoutingGroup,
 
 }
 
-func (c *SAPAPICaller) ProductionRoutingOpIntID(Product, Plant, ProductionRoutingGroup, ProductionRouting, ProductionRoutingOpIntID, ValidityEndDate string) {
-	res, err := c.callProductionRoutingSrvAPIRequirementOpIntID("OpDocumentPRTAssgmt", Product, Plant, ProductionRoutingGroup, ProductionRouting, ProductionRoutingOpIntID, ValidityEndDate)
+func (c *SAPAPICaller) ProductionRoutingOp(Product, Plant, ProductionRoutingGroup, ProductionRouting, ProductionRoutingOpIntID, ValidityEndDate string) {
+	res, err := c.callProductionRoutingSrvAPIRequirementOp("OpDocumentPRTAssgmt", Product, Plant, ProductionRoutingGroup, ProductionRouting, ProductionRoutingOpIntID, ValidityEndDate)
 	if err != nil {
 		c.log.Error(err)
 		return
@@ -123,7 +122,7 @@ func (c *SAPAPICaller) callProductionRoutingSrvAPIRequirementProductionRouting(a
 	return byteArray, nil
 }
 
-func (c *SAPAPICaller) callProductionRoutingSrvAPIRequirementOpIntID(api, Product, Plant, ProductionRoutingGroup, ProductionRouting, ProductionRoutingOpIntID, ValidityEndDate string) ([]byte, error) {
+func (c *SAPAPICaller) callProductionRoutingSrvAPIRequirementOp(api, Product, Plant, ProductionRoutingGroup, ProductionRouting, ProductionRoutingOpIntID, ValidityEndDate string) ([]byte, error) {
 	url := strings.Join([]string{c.baseURL, "API_PRODUCTION_ROUTING", api}, "/")
 	req, _ := http.NewRequest("GET", url, nil)
 

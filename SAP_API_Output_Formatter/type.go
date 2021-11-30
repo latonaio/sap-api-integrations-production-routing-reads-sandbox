@@ -26,7 +26,7 @@ type ProductionRouting struct {
 	ProdnRtgOpBOMItemInternalID string `json:"ProdnRtgOpBOMItemInternalID"`
 }
 
-type ProductionRoutingOpIntID struct {
+type ProductionRoutingOp struct {
 	Product                      string `json:"Product"`
 	Plant                        string `json:"Plant"`
 	ProductionRoutingGroup       string `json:"ProductionRoutingGroup"`
