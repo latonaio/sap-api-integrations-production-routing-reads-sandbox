@@ -2,13 +2,13 @@ package sap_api_output_formatter
 
 import (
 	"encoding/json"
-	"sap-api-integrations-material-stock-reads/SAP_API_Caller/responses"
+	"sap-api-integrations-production-routing-reads/SAP_API_Caller/responses"
 
 	"github.com/latonaio/golang-logging-library/logger"
 )
 
-func ConvertToMaterialStock(raw []byte, l *logger.Logger) *MaterialStock {
-	pm := &responses.MaterialStock{}
+func ConvertToProductionRouting(raw []byte, l *logger.Logger) *ProductionRouting {
+	pm := &responses.ProductionRouting{}
 	err := json.Unmarshal(raw, pm)
 	if err != nil {
 		l.Error(err)
@@ -23,11 +23,32 @@ func ConvertToMaterialStock(raw []byte, l *logger.Logger) *MaterialStock {
 	}
 	data := pm.D.Results[0]
 
-	return &MaterialStock{
-		Material:            data.Material,
-		Plant:               data.Plant,
-		StorageLocation:     data.StorageLocation,
-		Batch:               data.ValidityStartDate,
-		ToMaterialStock:     data.ToMaterialStock,
+	return &ProductionRouting{
+		Product                      data.Product,
+		Plant                        data.Plant,
+		ProductionRoutingGroup       data.ProductionRoutingGroup,
+		ProductionRouting            data.ProductionRouting,
+		ProductionRoutingGroupDesc   data.ProductionRoutingGroup_desc,
+		BillOfOperationsStatus       data.BillOfOperationsStatus,
+		MinimumLotSizeQuantity       data.MinimumLotSizeQuantity,
+		MaximumLotSizeQuantity       data.MaximumLotSizeQuantity,
+		ValidityStartDate            data.ValidityStartDate,
+		ValidityEndDate              data.ValidityEndDate,
+		IsMarkedForDeletion          data.IsMarkedForDeletion,
+		ProdnRtgOpBOMItemInternalID  data.ProdnRtgOpBOMItemInternalID,
+		ProductionRoutingOpIntID     data.ProductionRoutingOpIntID,
+		BillOfMaterial               data.BillOfMaterial,
+		BillOfMaterialItemNodeNumber data.BillOfMaterialItemNodeNumber,
+		MatlCompIsMarkedForBackflush data.MatlCompIsMarkedForBackflush,
+		WorkCenterInternalID         data.WorkCenterInternalID,
+		Operation                    data.Operation,
+		OperationText                data.OperationText,
+		PurchasingInfoRecord         data.PurchasingInfoRecord,
+		MaterialGroup                data.MaterialGroup,
+		PurchasingGroup              data.PurchasingGroup,
+		Supplier                     data.Supplier,
+		PlannedDeliveryDuration      data.PlannedDeliveryDuration,
+		NumberOfOperationPriceUnits  data.NumberOfOperationPriceUnits,
+		OpExternalProcessingPrice    data.OpExternalProcessingPrice,
 	}
 }
