@@ -15,4 +15,27 @@ sap-api-integrations-production-routing-reads は、主にエッジコンピュ�
 
 ## クラウド環境での利用
 
-sap-api-integrations-production-routing-reads は、外部システムがクラウド環境である場合にSAPと統合するときにおいても、利用可能なように設計されています。
+sap-api-integrations-production-routing-reads は、外部システムがクラウド環境である場合にSAPと統合するときにおいても、利用可能なように設計されています。  
+
+## 本レポジトリ が 対応する API サービス
+sap-api-integrations-production-routing-reads が対応する APIサービス は、次のものです。
+
+* APIサービス概要説明 URL: https://api.sap.com/api/OP_API_PRODUCTION_ROUTING_0001/overview  
+* APIサービス名(=baseURL): API_PRODUCTION_ROUTING
+
+## 本レポジトリ に 含まれる API名
+sap-api-integrations-production-routing-reads には、次の API をコールするためのリソースが含まれています。  
+
+* ProductionRoutingHeader（作業手順 - ヘッダ）
+
+## API への 値入力条件 の 初期値
+sap-api-integrations-production-routing-reads において、API への値入力条件の初期値は、入力ファイルレイアウトの種別毎に、次の通りとなっています。  
+
+### SDC レイアウト
+
+* inoutSDC.ProductionRouting.Product（品目）
+* inoutSDC.ProductionRouting.Plant（プラント）
+* inoutSDC.ProductionRouting.ValidityEndDate（有効終了日）
+* inoutSDC.ProductionRouting.ProductionRoutingGroup（作業手順グループ）
+* inoutSDC.ProductionRouting.ProductionRouting（作業手順）
+* inoutSDC.ProductionRouting.ProductionRoutingOpIntID.ProductionRoutingOpIntID（作業手順明細内部ID）

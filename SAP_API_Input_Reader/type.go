@@ -70,7 +70,7 @@ type SDC struct {
 		ValidityEndDate             string `json:"ValidityEndDate"`
 		IsMarkedForDeletion         bool   `json:"IsMarkedForDeletion"`
 		ProdnRtgOpBOMItemInternalID string `json:"ProdnRtgOpBOMItemInternalID"`
-		ProductionRoutingOpIntID    struct {
+		ProductionRoutingOp         struct {
 			ProductionRoutingOpIntID     string `json:"ProductionRoutingOpIntID"`
 			BillOfMaterial               string `json:"BillOfMaterial"`
 			BillOfMaterialItemNodeNumber string `json:"BillOfMaterialItemNodeNumber"`
