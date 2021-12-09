@@ -26,16 +26,18 @@ sap-api-integrations-production-routing-reads が対応する APIサービス �
 ## 本レポジトリ に 含まれる API名
 sap-api-integrations-production-routing-reads には、次の API をコールするためのリソースが含まれています。  
 
-* ProductionRoutingHeader（作業手順 - ヘッダ）
+* ProductionRoutingHeader（作業手順 - ヘッダ）※作業手順の詳細データを取得するために、ToMatlAssgmt、ToSequence、ToOperation、と合わせて利用されます。
+* ProductionRoutingMatlAssgmt（作業手順 - 品目）※作業手順の詳細データを取得するために、ToSequence、ToOperation、と合わせて利用されます。
+* ToMatlAssgmt（作業手順 - 品目）
+* ToSequence（作業手順 - 順序）
+* ToOperation（作業手順 - 作業）
 
 ## API への 値入力条件 の 初期値
 sap-api-integrations-production-routing-reads において、API への値入力条件の初期値は、入力ファイルレイアウトの種別毎に、次の通りとなっています。  
 
 ### SDC レイアウト
 
-* inoutSDC.ProductionRouting.Product（品目）
-* inoutSDC.ProductionRouting.Plant（プラント）
-* inoutSDC.ProductionRouting.ValidityEndDate（有効終了日）
 * inoutSDC.ProductionRouting.ProductionRoutingGroup（作業手順グループ）
 * inoutSDC.ProductionRouting.ProductionRouting（作業手順）
-* inoutSDC.ProductionRouting.ProductionRoutingOpIntID.ProductionRoutingOpIntID（作業手順明細内部ID）
+* inoutSDC.ProductionRouting.Product（品目）
+* inoutSDC.ProductionRouting.Plant（プラント）
