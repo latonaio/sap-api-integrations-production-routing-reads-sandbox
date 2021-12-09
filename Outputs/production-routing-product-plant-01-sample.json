@@ -1,0 +1,7 @@
+{
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-routing-reads/SAP_API_Caller/caller.go#L155",
+	"function": "sap-api-integrations-production-routing-reads/SAP_API_Caller.(*SAPAPICaller).ProductPlant",
+	"level": "INFO",
+	"message": "[{Product:AVC_RBT_ROBOT2 Plant:1010 ProductionRoutingGroup:41010088 ProductionRouting:1 ProductionRoutingMatlAssgmt:1 ProductionRtgMatlAssgmtIntVers:1 CreationDate:/Date(1603756800000)/ LastChangeDate: ValidityStartDate:/Date(1603756800000)/ ValidityEndDate:/Date(253402214400000)/ ChangeNumber:}]",
+	"time": "2021-12-09T14:03:47.592767+09:00"
+}

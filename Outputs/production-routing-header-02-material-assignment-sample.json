@@ -1,0 +1,7 @@
+{
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-routing-reads/SAP_API_Caller/caller.go#L57",
+	"function": "sap-api-integrations-production-routing-reads/SAP_API_Caller.(*SAPAPICaller).Header",
+	"level": "INFO",
+	"message": "&{Product:ELECTRIC FAN Plant:1010 ProductionRoutingGroup:40000060 ProductionRouting:1 ProductionRoutingMatlAssgmt:1 ProductionRtgMatlAssgmtIntVers:1 CreationDate:/Date(1612137600000)/ LastChangeDate: ValidityStartDate:/Date(1612137600000)/ ValidityEndDate:/Date(253402214400000)/ ChangeNumber:}",
+	"time": "2021-12-09T12:20:51.966409+09:00"
+}
