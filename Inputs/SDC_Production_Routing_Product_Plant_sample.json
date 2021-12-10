@@ -34,6 +34,7 @@
 		}
 	},
 	"api_schema": "/ProductionRoutingHeader",
+	"accepter": ["Header"],
 	"material_code": "AVC_RBT_ROBOT2",
 	"plant": "1010",
 	"deleted": false

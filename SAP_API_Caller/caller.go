@@ -26,18 +26,26 @@ func NewSAPAPICaller(baseUrl string, l *logger.Logger) *SAPAPICaller {
 	}
 }
 
-func (c *SAPAPICaller) AsyncGetProductionRouting(productionRoutingGroup, productionRouting, product, plant string) {
+func (c *SAPAPICaller) AsyncGetProductionRouting(productionRoutingGroup, productionRouting, product, plant string, accepter []string) {
 	wg := &sync.WaitGroup{}
+	wg.Add(len(accepter))
+	for _, fn := range accepter {
+		switch fn {
+		case "Header":
+			func() {
+				c.Header(productionRoutingGroup, productionRouting)
+				wg.Done()
+			}()
+		case "ProductPlant":
+			func() {
+				c.ProductPlant(product, plant)
+				wg.Done()
+			}()
+		default:
+			wg.Done()
+		}
+	}
 
-	wg.Add(2)
-	func() {
-		c.Header(productionRoutingGroup, productionRouting)
-		wg.Done()
-	}()
-	func() {
-		c.ProductPlant(product, plant)
-		wg.Done()
-	}()
 	wg.Wait()
 }
 

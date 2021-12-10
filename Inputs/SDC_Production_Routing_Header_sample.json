@@ -34,6 +34,7 @@
 		}
 	},
 	"api_schema": "/ProductionRoutingHeader",
+	"accepter": ["All"],
 	"material_code": "",
 	"plant": "",
 	"deleted": false
