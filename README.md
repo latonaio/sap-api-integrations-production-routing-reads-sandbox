@@ -50,13 +50,13 @@ Latona および AION の SAP 関連リソースでは、Inputs フォルダ下�
 * sample.jsonの記載例(1)  
 
 accepter において 下記の例のように、データの種別（＝APIの種別）を指定します。  
-ここでは、"General" が指定されています。    
+ここでは、"ProductPlant" が指定されています。    
   
 ```
-	"api_schema": "/ProductionRoutingHeader",
-	"accepter": ["Header"],
-	"material_code": "",
-	"plant": "",
+	"api_schema": "/ProductionRoutingMatlAssgmt",
+	"accepter": ["ProductPlant"],
+	"material_code": "AVC_RBT_ROBOT2",
+	"plant": "1010",
 	"deleted": false
 ```
   
@@ -65,10 +65,10 @@ accepter において 下記の例のように、データの種別（＝APIの�
 全データを取得する場合、sample.json は以下のように記載します。  
 
 ```
-    "api_schema": "/ProductionRoutingHeader",
+	"api_schema": "/ProductionRoutingMatlAssgmt",
 	"accepter": ["All"],
-	"material_code": "",
-	"plant": "",
+	"material_code": "AVC_RBT_ROBOT2",
+	"plant": "1010",
 	"deleted": false
 ```
 

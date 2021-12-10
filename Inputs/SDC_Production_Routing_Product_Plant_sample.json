@@ -33,8 +33,8 @@
 			"OpExternalProcessingPrice": ""
 		}
 	},
-	"api_schema": "/ProductionRoutingHeader",
-	"accepter": ["Header"],
+	"api_schema": "/ProductionRoutingMatlAssgmt",
+	"accepter": ["ProductPlant"],
 	"material_code": "AVC_RBT_ROBOT2",
 	"plant": "1010",
 	"deleted": false
