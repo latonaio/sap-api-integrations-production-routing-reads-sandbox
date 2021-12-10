@@ -41,3 +41,35 @@ sap-api-integrations-production-routing-reads において、API への値入力
 * inoutSDC.ProductionRouting.ProductionRouting（作業手順）
 * inoutSDC.ProductionRouting.Product（品目）
 * inoutSDC.ProductionRouting.Plant（プラント）
+
+## 指定されたデータ種別のコール
+
+accepter における データ種別 の指定に基づいて SAP_API_Caller 内の caller.go で API がコールされます。  
+caller.go の func() 毎 の 以下の箇所が、指定された API をコールするソースコードです。  
+
+```
+func (c *SAPAPICaller) AsyncGetProductionRouting(productionRoutingGroup, productionRouting, product, plant string, accepter []string) {
+	wg := &sync.WaitGroup{}
+	wg.Add(len(accepter))
+	for _, fn := range accepter {
+		switch fn {
+		case "Header":
+			func() {
+				c.Header(productionRoutingGroup, productionRouting)
+				wg.Done()
+			}()
+		case "ProductPlant":
+			func() {
+				c.ProductPlant(product, plant)
+				wg.Done()
+			}()
+		default:
+			wg.Done()
+		}
+	}
+
+	wg.Wait()
+}
+```
+
+
