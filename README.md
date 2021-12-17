@@ -101,5 +101,18 @@ func (c *SAPAPICaller) AsyncGetProductionRouting(productionRoutingGroup, product
 	wg.Wait()
 }
 ```
+## Output  
+本マイクロサービスでは、[golang-logging-library](https://github.com/latonaio/golang-logging-library) により、以下のようなデータがJSON形式で出力されます。   
+以下の sample.json の例は、SAP 作業手順 が取得された結果の JSON の例です。  
+以下の項目のうち、"ProductionRoutingGroup" ～ "ProductionRoutingInternalVers" は、/SAP_API_Output_Formatter/type.go 内 の type Batch struct {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。    
 
+```
+{
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-routing-reads/SAP_API_Caller/caller.go#L50",
+	"function": "sap-api-integrations-production-routing-reads/SAP_API_Caller.(*SAPAPICaller).Header",
+	"level": "INFO",
+	"message": "[{ProductionRoutingGroup:40000060 ProductionRouting:1 ProductionRoutingInternalVers:1 IsMarkedForDeletion:false BillOfOperationsDesc:MTS - ELECTRIC FAN Plant:1010 BillOfOperationsUsage:1 BillOfOperationsStatus:4 ResponsiblePlannerGroup: MinimumLotSizeQuantity:1 MaximumLotSizeQuantity:99999999 BillOfOperationsUnit:PC CreationDate:/Date(1612137600000)/ CreatedByUser:SAP_SYSTEM LastChangeDate: ValidityStartDate:/Date(1612137600000)/ ValidityEndDate:/Date(253402214400000)/ ChangeNumber: PlainLongText: ToMatlAssgmt:https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCTION_ROUTING/ProductionRoutingHeader(ProductionRoutingGroup='40000060',ProductionRouting='1',ProductionRoutingInternalVers='1')/to_MatlAssgmt ToSequence:https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCTION_ROUTING/ProductionRoutingHeader(ProductionRoutingGroup='40000060',ProductionRouting='1',ProductionRoutingInternalVers='1')/to_Sequence}]",
+	"time": "2021-12-09T12:20:51.285212+09:00"
+}
+```
 
