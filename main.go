@@ -25,8 +25,8 @@ func main() {
 	caller.AsyncGetProductionRouting(
 		inoutSDC.ProductionRouting.ProductionRoutingGroup,
 		inoutSDC.ProductionRouting.ProductionRouting,
-		inoutSDC.ProductionRouting.Product,
-		inoutSDC.ProductionRouting.Plant,
+		inoutSDC.ProductionRouting.MaterialAssignment.Product,
+		inoutSDC.ProductionRouting.MaterialAssignment.Plant,
 		accepter,
 	)
 }
