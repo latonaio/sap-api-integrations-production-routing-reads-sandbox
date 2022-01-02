@@ -26,8 +26,8 @@ sap-api-integrations-production-routing-reads が対応する APIサービス �
 ## 本レポジトリ に 含まれる API名
 sap-api-integrations-production-routing-reads には、次の API をコールするためのリソースが含まれています。  
 
-* ProductionRoutingHeader（作業手順 - ヘッダ）※作業手順の詳細データを取得するために、ToMatlAssgmt、ToSequence、ToOperation、と合わせて利用されます。
-* ToMatlAssgmt（作業手順 - 品目 ※To）
+* ProductionRoutingHeader（作業手順 - ヘッダ）※作業手順の詳細データを取得するために、ToMaterialAssignment、ToSequence、ToOperation、と合わせて利用されます。
+* ToMaterialAssignment（作業手順 - 品目 ※To）
 * ToSequence（作業手順 - 順序 ※To）
 * ToOperation（作業手順 - 作業 ※To）
 * ProductionRoutingMatlAssgmt（作業手順 - 品目）※作業手順の詳細データを取得するために、ToSequence、ToOperation、と合わせて利用されます。
@@ -105,16 +105,39 @@ func (c *SAPAPICaller) AsyncGetProductionRouting(productionRoutingGroup, product
 ```
 ## Output  
 本マイクロサービスでは、[golang-logging-library](https://github.com/latonaio/golang-logging-library) により、以下のようなデータがJSON形式で出力されます。   
-以下の sample.json の例は、SAP 作業手順 が取得された結果の JSON の例です。  
+以下の sample.json の例は、SAP 作業手順 ヘッダ が取得された結果の JSON の例です。  
 以下の項目のうち、"ProductionRoutingGroup" ～ "ProductionRoutingInternalVers" は、/SAP_API_Output_Formatter/type.go 内 の type Header {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。    
 
 ```
 {
-	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-routing-reads/SAP_API_Caller/caller.go#L50",
+	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-routing-reads/SAP_API_Caller/caller.go#L58",
 	"function": "sap-api-integrations-production-routing-reads/SAP_API_Caller.(*SAPAPICaller).Header",
 	"level": "INFO",
-	"message": "[{ProductionRoutingGroup:40000060 ProductionRouting:1 ProductionRoutingInternalVers:1 IsMarkedForDeletion:false BillOfOperationsDesc:MTS - ELECTRIC FAN Plant:1010 BillOfOperationsUsage:1 BillOfOperationsStatus:4 ResponsiblePlannerGroup: MinimumLotSizeQuantity:1 MaximumLotSizeQuantity:99999999 BillOfOperationsUnit:PC CreationDate:/Date(1612137600000)/ CreatedByUser:SAP_SYSTEM LastChangeDate: ValidityStartDate:/Date(1612137600000)/ ValidityEndDate:/Date(253402214400000)/ ChangeNumber: PlainLongText: ToMatlAssgmt:https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCTION_ROUTING/ProductionRoutingHeader(ProductionRoutingGroup='40000060',ProductionRouting='1',ProductionRoutingInternalVers='1')/to_MatlAssgmt ToSequence:https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCTION_ROUTING/ProductionRoutingHeader(ProductionRoutingGroup='40000060',ProductionRouting='1',ProductionRoutingInternalVers='1')/to_Sequence}]",
-	"time": "2021-12-09T12:20:51.285212+09:00"
+	"message": [
+		{
+			"ProductionRoutingGroup": "40000060",
+			"ProductionRouting": "1",
+			"ProductionRoutingInternalVers": "1",
+			"IsMarkedForDeletion": false,
+			"BillOfOperationsDesc": "MTS - ELECTRIC FAN",
+			"Plant": "1010",
+			"BillOfOperationsUsage": "1",
+			"BillOfOperationsStatus": "4",
+			"ResponsiblePlannerGroup": "",
+			"MinimumLotSizeQuantity": "1",
+			"MaximumLotSizeQuantity": "99999999",
+			"BillOfOperationsUnit": "PC",
+			"CreationDate": "/Date(1612137600000)/",
+			"CreatedByUser": "SAP_SYSTEM",
+			"LastChangeDate": "",
+			"ValidityStartDate": "/Date(1612137600000)/",
+			"ValidityEndDate": "/Date(253402214400000)/",
+			"ChangeNumber": "",
+			"PlainLongText": "",
+			"to_MatlAssgmt": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCTION_ROUTING/ProductionRoutingHeader(ProductionRoutingGroup='40000060',ProductionRouting='1',ProductionRoutingInternalVers='1')/to_MatlAssgmt",
+			"to_Sequence": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCTION_ROUTING/ProductionRoutingHeader(ProductionRoutingGroup='40000060',ProductionRouting='1',ProductionRoutingInternalVers='1')/to_Sequence"
+		}
+	],
+	"time": "2022-01-02T14:47:00.25546+09:00"
 }
 ```
-
