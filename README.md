@@ -27,10 +27,12 @@ sap-api-integrations-production-routing-reads が対応する APIサービス �
 sap-api-integrations-production-routing-reads には、次の API をコールするためのリソースが含まれています。  
 
 * ProductionRoutingHeader（作業手順 - ヘッダ）※作業手順の詳細データを取得するために、ToMatlAssgmt、ToSequence、ToOperation、と合わせて利用されます。
+* ToMatlAssgmt（作業手順 - 品目 ※To）
+* ToSequence（作業手順 - 順序 ※To）
+* ToOperation（作業手順 - 作業 ※To）
 * ProductionRoutingMatlAssgmt（作業手順 - 品目）※作業手順の詳細データを取得するために、ToSequence、ToOperation、と合わせて利用されます。
-* ToMatlAssgmt（作業手順 - 品目）
-* ToSequence（作業手順 - 順序）
-* ToOperation（作業手順 - 作業）
+* ToSequence（作業手順 - 順序 ※To）
+* ToOperation（作業手順 - 作業 ※To）
 
 ## API への 値入力条件 の 初期値
 sap-api-integrations-production-routing-reads において、API への値入力条件の初期値は、入力ファイルレイアウトの種別毎に、次の通りとなっています。  
