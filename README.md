@@ -34,6 +34,7 @@ sap-api-integrations-production-routing-reads には、次の API をコール�
 * ProductionRoutingMatlAssgmt（作業手順 - 品目）※作業手順の詳細データを取得するために、ToSequence、ToOperation、と合わせて利用されます。
 * ToSequence（作業手順 - 順序 ※To）
 * ToOperation（作業手順 - 作業 ※To）
+* ToComponentAllocation（作業手順 - 構成品目割当 ※To）
 
 ## API への 値入力条件 の 初期値
 sap-api-integrations-production-routing-reads において、API への値入力条件の初期値は、入力ファイルレイアウトの種別毎に、次の通りとなっています。  
