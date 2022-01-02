@@ -2,18 +2,20 @@
 	"cursor": "/Users/latona2/bitbucket/sap-api-integrations-production-routing-reads/SAP_API_Caller/caller.go#L65",
 	"function": "sap-api-integrations-production-routing-reads/SAP_API_Caller.(*SAPAPICaller).Header",
 	"level": "INFO",
-	"message": {
-		"Product": "ELECTRIC FAN",
-		"Plant": "1010",
-		"ProductionRoutingGroup": "40000060",
-		"ProductionRouting": "1",
-		"ProductionRoutingMatlAssgmt": "1",
-		"ProductionRtgMatlAssgmtIntVers": "1",
-		"CreationDate": "/Date(1612137600000)/",
-		"LastChangeDate": "",
-		"ValidityStartDate": "/Date(1612137600000)/",
-		"ValidityEndDate": "/Date(253402214400000)/",
-		"ChangeNumber": ""
-	},
-	"time": "2022-01-02T12:42:16.321888+09:00"
+	"message": [
+		{
+			"Product": "ELECTRIC FAN",
+			"Plant": "1010",
+			"ProductionRoutingGroup": "40000060",
+			"ProductionRouting": "1",
+			"ProductionRoutingMatlAssgmt": "1",
+			"ProductionRtgMatlAssgmtIntVers": "1",
+			"CreationDate": "/Date(1612137600000)/",
+			"LastChangeDate": "",
+			"ValidityStartDate": "/Date(1612137600000)/",
+			"ValidityEndDate": "/Date(253402214400000)/",
+			"ChangeNumber": ""
+		}
+	],
+	"time": "2022-01-02T14:41:01.557669+09:00"
 }

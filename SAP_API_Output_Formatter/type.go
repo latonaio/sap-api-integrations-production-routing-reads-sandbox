@@ -31,7 +31,7 @@ type Header struct {
 			ValidityEndDate               string      `json:"ValidityEndDate"`
 			ChangeNumber                  string      `json:"ChangeNumber"`
 			PlainLongText                 string      `json:"PlainLongText"`
-			ToMatlAssgmt                  string      `json:"to_MatlAssgmt"`
+			ToMaterialAssignment          string      `json:"to_MatlAssgmt"`
 			ToSequence                    string      `json:"to_Sequence"`
 }
 
@@ -49,7 +49,7 @@ type MaterialAssignment struct {
 			ChangeNumber                   string      `json:"ChangeNumber"`
 }
 
-type ToMatlAssgmt struct {
+type ToMaterialAssignment struct {
 			Product                        string      `json:"Product"`
 			Plant                          string      `json:"Plant"`
 			ProductionRoutingGroup         string      `json:"ProductionRoutingGroup"`

@@ -1,6 +1,6 @@
 package responses
 
-type ToMatlAssgmt struct {
+type ToMaterialAssignment struct {
 	D struct {
 		Results []struct {
 			Metadata struct {

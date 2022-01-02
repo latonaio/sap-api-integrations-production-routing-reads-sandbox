@@ -57,12 +57,12 @@ func (c *SAPAPICaller) Header(productionRoutingGroup, productionRouting string) 
 	}
 	c.log.Info(headerData)
 
-	matlAssgmtData, err := c.callToMatlAssgmt(headerData[0].ToMatlAssgmt)
+	materialAssignmentData, err := c.callToMaterialAssignment(headerData[0].ToMaterialAssignment)
 	if err != nil {
 		c.log.Error(err)
 		return
 	}
-	c.log.Info(matlAssgmtData)
+	c.log.Info(materialAssignmentData)
 
 	sequenceData, err := c.callToSequence(headerData[0].ToSequence)
 	if err != nil {
@@ -71,7 +71,7 @@ func (c *SAPAPICaller) Header(productionRoutingGroup, productionRouting string) 
 	}
 	c.log.Info(sequenceData)
 
-	operationData, err := c.callToOperation(sequenceData.ToOperation)
+	operationData, err := c.callToOperation(sequenceData[0].ToOperation)
 	if err != nil {
 		c.log.Error(err)
 		return
@@ -100,7 +100,7 @@ func (c *SAPAPICaller) callProductionRoutingSrvAPIRequirementHeader(api, product
 	return data, nil
 }
 
-func (c *SAPAPICaller) callToMatlAssgmt(url string) (*sap_api_output_formatter.ToMatlAssgmt, error) {
+func (c *SAPAPICaller) callToMaterialAssignment(url string) ([]sap_api_output_formatter.ToMaterialAssignment, error) {
 	req, _ := http.NewRequest("GET", url, nil)
 	c.setHeaderAPIKeyAccept(req)
 
@@ -111,14 +111,14 @@ func (c *SAPAPICaller) callToMatlAssgmt(url string) (*sap_api_output_formatter.T
 	defer resp.Body.Close()
 
 	byteArray, _ := ioutil.ReadAll(resp.Body)
-	data, err := sap_api_output_formatter.ConvertToToMatlAssgmt(byteArray, c.log)
+	data, err := sap_api_output_formatter.ConvertToToMaterialAssignment(byteArray, c.log)
 	if err != nil {
 		return nil, xerrors.Errorf("convert error: %w", err)
 	}
 	return data, nil
 }
 
-func (c *SAPAPICaller) callToSequence(url string) (*sap_api_output_formatter.ToSequence, error) {
+func (c *SAPAPICaller) callToSequence(url string) ([]sap_api_output_formatter.ToSequence, error) {
 	req, _ := http.NewRequest("GET", url, nil)
 	c.setHeaderAPIKeyAccept(req)
 
@@ -136,7 +136,7 @@ func (c *SAPAPICaller) callToSequence(url string) (*sap_api_output_formatter.ToS
 	return data, nil
 }
 
-func (c *SAPAPICaller) callToOperation(url string) (*sap_api_output_formatter.ToOperation, error) {
+func (c *SAPAPICaller) callToOperation(url string) ([]sap_api_output_formatter.ToOperation, error) {
 	req, _ := http.NewRequest("GET", url, nil)
 	c.setHeaderAPIKeyAccept(req)
 
@@ -173,7 +173,7 @@ func (c *SAPAPICaller) ProductPlant(product, plant string) {
 	}
 	c.log.Info(sequenceData)
 
-	operationData, err := c.callToOperation(sequenceData.ToOperation)
+	operationData, err := c.callToOperation(sequenceData[0].ToOperation)
 	if err != nil {
 		c.log.Error(err)
 		return

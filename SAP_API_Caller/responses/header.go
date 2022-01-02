@@ -28,7 +28,7 @@ type Header struct {
 			ValidityEndDate               string      `json:"ValidityEndDate"`
 			ChangeNumber                  string      `json:"ChangeNumber"`
 			PlainLongText                 string      `json:"PlainLongText"`
-			ToMatlAssgmt                  struct {
+			ToMaterialAssignment          struct {
 				Deferred struct {
 					URI string `json:"uri"`
 				} `json:"__deferred"`

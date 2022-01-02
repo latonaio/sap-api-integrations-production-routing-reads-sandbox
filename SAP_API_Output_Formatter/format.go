@@ -45,7 +45,7 @@ func ConvertToHeader(raw []byte, l *logger.Logger) ([]Header, error) {
 			ValidityEndDate:               data.ValidityEndDate,
 			ChangeNumber:                  data.ChangeNumber,
 			PlainLongText:                 data.PlainLongText,
-			ToMatlAssgmt:                  data.ToMatlAssgmt.Deferred.URI,
+			ToMaterialAssignment:          data.ToMaterialAssignment.Deferred.URI,
 			ToSequence:                    data.ToSequence.Deferred.URI,
 		})
 	}
@@ -88,22 +88,24 @@ func ConvertToMaterialAssignment(raw []byte, l *logger.Logger) ([]MaterialAssign
 	return materialAssignment, nil
 }
 
-func ConvertToToMatlAssgmt(raw []byte, l *logger.Logger) (*ToMatlAssgmt, error) {
-	pm := &responses.ToMatlAssgmt{}
+func ConvertToToMaterialAssignment(raw []byte, l *logger.Logger) ([]ToMaterialAssignment, error) {
+	pm := &responses.ToMaterialAssignment{}
 
 	err := json.Unmarshal(raw, pm)
 	if err != nil {
-		return nil, xerrors.Errorf("cannot convert to ToMatlAssgmt. unmarshal error: %w", err)
+		return nil, xerrors.Errorf("cannot convert to ToMaterialAssignment. unmarshal error: %w", err)
 	}
 	if len(pm.D.Results) == 0 {
 		return nil, xerrors.New("Result data is not exist")
 	}
 	if len(pm.D.Results) > 10 {
-		l.Info("raw data has too many Results. %d Results exist. expected only 1 Result. Use the first of Results array", len(pm.D.Results))
+		l.Info("raw data has too many Results. %d Results exist. show the first 10 of Results array", len(pm.D.Results))
 	}
-	data := pm.D.Results[0]
 
-	return &ToMatlAssgmt{
+	toMaterialAssignment := make([]ToMaterialAssignment, 0, 10)
+	for i := 0; i < 10 && i < len(pm.D.Results); i++ {
+		data := pm.D.Results[i]
+		toMaterialAssignment = append(toMaterialAssignment, ToMaterialAssignment{
 			Product:                        data.Product,
 			Plant:                          data.Plant,
 			ProductionRoutingGroup:         data.ProductionRoutingGroup,
@@ -115,10 +117,13 @@ func ConvertToToMatlAssgmt(raw []byte, l *logger.Logger) (*ToMatlAssgmt, error) 
 			ValidityStartDate:              data.ValidityStartDate,
 			ValidityEndDate:                data.ValidityEndDate,
 			ChangeNumber:                   data.ChangeNumber,
-	}, nil
+		})
+	}
+
+	return toMaterialAssignment, nil
 }
 
-func ConvertToToSequence(raw []byte, l *logger.Logger) (*ToSequence, error) {
+func ConvertToToSequence(raw []byte, l *logger.Logger) ([]ToSequence, error) {
 	pm := &responses.ToSequence{}
 
 	err := json.Unmarshal(raw, pm)
@@ -129,11 +134,13 @@ func ConvertToToSequence(raw []byte, l *logger.Logger) (*ToSequence, error) {
 		return nil, xerrors.New("Result data is not exist")
 	}
 	if len(pm.D.Results) > 10 {
-		l.Info("raw data has too many Results. %d Results exist. expected only 1 Result. Use the first of Results array", len(pm.D.Results))
+		l.Info("raw data has too many Results. %d Results exist. show the first 10 of Results array", len(pm.D.Results))
 	}
-	data := pm.D.Results[0]
 
-	return &ToSequence{
+	toSequence := make([]ToSequence, 0, 10)
+	for i := 0; i < 10 && i < len(pm.D.Results); i++ {
+		data := pm.D.Results[i]
+		toSequence = append(toSequence, ToSequence{
 			ProductionRoutingGroup:       data.ProductionRoutingGroup,
 			ProductionRouting:            data.ProductionRouting,
 			ProductionRoutingSequence:    data.ProductionRoutingSequence,
@@ -150,10 +157,13 @@ func ConvertToToSequence(raw []byte, l *logger.Logger) (*ToSequence, error) {
 			CreationDate:                 data.CreationDate,
 			LastChangeDate:               data.LastChangeDate,
 			ToOperation:                  data.ToOperation.Deferred.URI,
-	}, nil
+		})
+	}
+
+	return toSequence, nil
 }
 
-func ConvertToToOperation(raw []byte, l *logger.Logger) (*ToOperation, error) {
+func ConvertToToOperation(raw []byte, l *logger.Logger) ([]ToOperation, error) {
 	pm := &responses.ToOperation{}
 
 	err := json.Unmarshal(raw, pm)
@@ -164,11 +174,13 @@ func ConvertToToOperation(raw []byte, l *logger.Logger) (*ToOperation, error) {
 		return nil, xerrors.New("Result data is not exist")
 	}
 	if len(pm.D.Results) > 10 {
-		l.Info("raw data has too many Results. %d Results exist. expected only 1 Result. Use the first of Results array", len(pm.D.Results))
+		l.Info("raw data has too many Results. %d Results exist. show the first 10 of Results array", len(pm.D.Results))
 	}
-	data := pm.D.Results[0]
 
-	return &ToOperation{
+	toOperation := make([]ToOperation, 0, 10)
+	for i := 0; i < 10 && i < len(pm.D.Results); i++ {
+		data := pm.D.Results[i]
+		toOperation = append(toOperation, ToOperation{
 			ProductionRoutingGroup:         data.ProductionRoutingGroup,
 			ProductionRouting:              data.ProductionRouting,
 			ProductionRoutingSequence:      data.ProductionRoutingSequence,
@@ -224,5 +236,8 @@ func ConvertToToOperation(raw []byte, l *logger.Logger) (*ToOperation, error) {
 			OperationScrapPercent:          data.OperationScrapPercent,
 			ChangedDateTime:                data.ChangedDateTime,
 			PlainLongText:                  data.PlainLongText,
-	}, nil
+		})
+	}
+
+	return toOperation, nil
 }
