@@ -10,7 +10,7 @@ import (
 func main() {
 	l := logger.NewLogger()
 	fr := sap_api_input_reader.NewFileReader()
-	inoutSDC := fr.ReadSDC("./Inputs//SDC_Production_Routing_Product_Plant_sample.json")
+	inoutSDC := fr.ReadSDC("./Inputs//SDC_Production_Routing_Operation_Text_sample.json")
 	caller := sap_api_caller.NewSAPAPICaller(
 		"https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/", l,
 	)
@@ -19,6 +19,7 @@ func main() {
 	if len(accepter) == 0 || accepter[0] == "All" {
 		accepter = []string{
 			"Header", "ProductPlant",
+			"BillOfOperationsDesc", "SequenceText", "OperationText",
 		}
 	}
 
@@ -27,6 +28,9 @@ func main() {
 		inoutSDC.ProductionRouting.ProductionRouting,
 		inoutSDC.ProductionRouting.MaterialAssignment.Product,
 		inoutSDC.ProductionRouting.MaterialAssignment.Plant,
+		inoutSDC.ProductionRouting.BillOfOperationsDesc,
+		inoutSDC.ProductionRouting.Sequence.SequenceText,
+		inoutSDC.ProductionRouting.Sequence.Operation.OperationText,
 		accepter,
 	)
 }
