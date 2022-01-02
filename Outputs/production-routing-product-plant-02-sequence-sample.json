@@ -22,5 +22,5 @@
 			"to_Operation": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_PRODUCTION_ROUTING/ProductionRoutingSequence(ProductionRoutingGroup='41010088',ProductionRouting='1',ProductionRoutingSequence='0',ProductionRoutingSqncIntVers='1')/to_Operation"
 		}
 	],
-	"time": "2022-01-02T14:42:51.229484+09:00"
+	"time": "2022-01-02T14:48:50.856384+09:00"
 }
